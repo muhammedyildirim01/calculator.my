@@ -1,0 +1,102 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Калькулятор запущен!");
+
+        while (true) 
+        {
+            Console.WriteLine("\nПожалуйста, выберите действие, которое вы хотите выполнить:");
+            Console.WriteLine("1 -  сложения");
+            Console.WriteLine("2 - вычитания");
+            Console.WriteLine("3 - умножение");
+            Console.WriteLine("4 - деление");
+            Console.WriteLine("5 - Вычислить комплексное выражение");
+            Console.WriteLine("0 - Выход");
+
+            Console.Write("Ваш выбор:");
+            string secim = Console.ReadLine();
+
+            if (secim == "0")
+            {
+                Console.WriteLine("Калькулятор отключается:)");
+                break;
+            }
+
+            double sonuc = 0;
+            if (secim == "5")
+            {
+                Console.Write("Введите математическое выражение (пример: 4 + 8 * 7 - 1/8): ");
+                string giris = Console.ReadLine();
+                sonuc = Hesapla(giris);
+            }
+            else
+            {
+                Console.Write("Введите первое число: ");
+                double a = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("Введите второе число: ");
+                double b = Convert.ToDouble(Console.ReadLine());
+
+                for (int i = 1; i <= 1; i++) 
+                {
+                    if (secim == "1") sonuc = Topla(a, b);
+                    else if (secim == "2") sonuc = Cikar(a, b);
+                    else if (secim == "3") sonuc = Carp(a, b);
+                    else if (secim == "4") sonuc = Bol(a, b);
+                    else Console.WriteLine("Неверный выбор!");
+                }
+            }
+
+            Console.WriteLine("заключение: " + sonuc);
+        }
+    }
+
+    
+    static double Topla(double a, double b)
+    {
+        return a + b;
+    }
+
+    
+    static double Cikar(double a, double b)
+    {
+        return a - b;
+    }
+
+    
+    static double Carp(double a, double b)
+    {
+        return a * b;
+    }
+
+    
+    static double Bol(double a, double b)
+    {
+        if (b == 0)
+        {
+            Console.WriteLine("Ошибка: невозможно разделить на ноль!");
+            return 0;
+        }
+        return a / b;
+    }
+
+    
+    static double Hesapla(string ifade)
+    {
+        try
+        {
+            return Convert.ToDouble(new System.Data.DataTable().Compute(ifade, null));
+        }
+        catch
+        {
+            Console.WriteLine("Неверное математическое выражение!");
+            return 0;
+         
+
+
+        }
+    }
+}
